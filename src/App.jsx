@@ -1,4 +1,4 @@
-import Cabecalho from "./components/cabecalho/Cabecalho";
+import Cabecalho from "./components/Cabecalho/Cabecalho";
 import Home from "./pages/Home/Home";
 import Produtos from "./pages/Produtos/Produtos";
 import Sobre from "./pages/Sobre/Sobre";
