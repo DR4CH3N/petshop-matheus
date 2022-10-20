@@ -24,3 +24,7 @@ telas a partir de X tamanho (min-width)
 ### desktop first:
 
 telas de ate o tamanho X (max-width)
+
+## dicas de sintaxe
+
+sempre que for utilizar um objeto no JSX, sempre use letras minusculas em vez de maiusculas, mesmo se o nome da classe começar com letra maiuscula
