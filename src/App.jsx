@@ -3,17 +3,33 @@ import Home from "./pages/Home/Home";
 import Produtos from "./pages/Produtos/Produtos";
 import Sobre from "./pages/Sobre/Sobre";
 import Contato from "./pages/Contato/Contato";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 const App = () => {
   return (
     <>
-      <Cabecalho />
-      <main className="limitador">
-        <Home />
-        <Produtos />
-        <Sobre />
-        <Contato />
-      </main>
+      <BrowserRouter>
+        <Cabecalho />
+        <main className="limitador">
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+
+            <Route exact path="/produtos">
+              <Produtos />
+            </Route>
+
+            <Route exact path="/sobre">
+              <Sobre />
+            </Route>
+
+            <Route exact path="/contato">
+              <Contato />
+            </Route>
+          </Switch>
+        </main>
+      </BrowserRouter>
     </>
   );
 };
