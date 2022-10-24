@@ -1,9 +1,11 @@
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import Cabecalho from "./components/Cabecalho/Cabecalho";
+import Contato from "./pages/Contato/Contato";
 import Home from "./pages/Home/Home";
+import Pagina404 from "./pages/Pagina404/Pagina404";
 import Produtos from "./pages/Produtos/Produtos";
 import Sobre from "./pages/Sobre/Sobre";
-import Contato from "./pages/Contato/Contato";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 const App = () => {
   return (
@@ -15,17 +17,17 @@ const App = () => {
             <Route exact path="/">
               <Home />
             </Route>
-
-            <Route exact path="/produtos">
+            <Route path="/produtos">
               <Produtos />
             </Route>
-
-            <Route exact path="/sobre">
+            <Route path="/sobre">
               <Sobre />
             </Route>
-
-            <Route exact path="/contato">
+            <Route path="/contato">
               <Contato />
+            </Route>
+            <Route path="*">
+              <Pagina404 />
             </Route>
           </Switch>
         </main>

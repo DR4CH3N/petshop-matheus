@@ -24,11 +24,13 @@ nav a:last-child {
 nav a:hover,
 nav a:focus {
   background-color: var(--cor-primaria-fundo-hover);
+  /* background-color: red; */
   color: var(--cor-primaria-hover);
 }
 
 nav a.ativo {
-  background-color: darkred;
+  /* background-color: red; */
+  background-color: var(--cor-primaria-fundo-hover);
 }
 
 @media screen and (min-width: 700px) {
