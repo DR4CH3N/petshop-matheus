@@ -1,10 +1,10 @@
-import estilos from "./Menu.module.css";
 import { NavLink } from "react-router-dom";
+import estilos from "./Menu.module.css";
 
 const Menu = () => {
   return (
     <nav>
-      <NavLink activeClassName={estilos.ativo} to="/">
+      <NavLink activeClassName={estilos.ativo} exact to="/">
         Blog
       </NavLink>
       <NavLink activeClassName={estilos.ativo} to="/produtos">

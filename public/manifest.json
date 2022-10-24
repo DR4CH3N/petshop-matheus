@@ -1,6 +1,6 @@
 {
-  "short_name": "petshop",
-  "name": "exemplo de app criado com react como uma SPA",
+  "short_name": "PetShop",
+  "name": "Exemplo de App criado com React como uma SPA",
   "icons": [
     {
       "src": "favicon.png",

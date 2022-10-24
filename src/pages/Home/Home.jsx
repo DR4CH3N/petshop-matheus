@@ -1,10 +1,9 @@
-import estilos from "./Home.module.css";
 import ListaPosts from "../../components/ListaPosts/ListaPosts";
-
+import estilos from "./Home.module.css";
 const Home = () => {
   return (
     <section>
-      <h2 className={estilos.titulo_secao}>Pet noticias</h2>
+      <h2 className={estilos.titulo_secao}>Pet Notícias</h2>
 
       <ListaPosts />
     </section>

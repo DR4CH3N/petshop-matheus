@@ -1,35 +1,31 @@
+import Caixa from "../../components/Caixa/Caixa";
 import estilos from "./Sobre.module.css";
-
 const Sobre = () => {
   return (
     <section>
-      <h2 className={estilos.titulo_secao}>Sobre nosso petshop</h2>
-
-      <div id="sobre">
+      <h2 className={estilos.titulo_secao}>Sobre nosso PetShop</h2>
+      <Caixa>
         <h3>Missão</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-          molestias. Neque veritatis, iusto obcaecati maiores voluptates dolor
-          rerum, in delectus illo perspiciatis ad quia nemo dolorum, dolores
-          repellendus laborum tempora.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto,
+          quo maxime. Nesciunt aspernatur inventore iure delectus, mollitia
+          adipisci dicta esse!
         </p>
-
         <h3>Visão</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim nulla
-          iusto praesentium earum modi? Molestiae sint blanditiis asperiores,
-          voluptatem eveniet ut distinctio deserunt nisi earum enim ea
-          obcaecati. Unde nam molestiae, vitae corporis tempora quod maxime
-          natus dolore aut. Aspernatur.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+          voluptates est repellat minus sequi, quis placeat eius eaque pariatur
+          reprehenderit repellendus ducimus, molestias dolor quasi voluptatibus
+          iure fugit id nobis dolorum aliquid necessitatibus. Labore alias fugit
+          expedita ea asperiores tempora!
         </p>
-
         <h3>Valores</h3>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
-          quas deleniti cumque sint obcaecati repudiandae alias, blanditiis
-          magnam natus debitis?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+          suscipit adipisci omnis nihil, incidunt eaque itaque laborum
+          aspernatur sit libero!
         </p>
-      </div>
+      </Caixa>
     </section>
   );
 };

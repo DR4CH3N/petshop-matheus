@@ -1,5 +1,5 @@
 .topo {
-  background-color: lightblue;
+  background-color: #f7f7f7;
   box-shadow: var(--sombra-box);
 }
 
@@ -21,6 +21,7 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  padding-bottom: 1rem;
 }
 
 .topo img {
@@ -33,12 +34,11 @@
   color: var(--cor-secundaria-hover);
 }
 
-/* crie uma media query para telas a partir de 700px, e faça as seguintes mudanças:
+/* Crie uma media query para telas a partir de 700px, e faça as seguintes mudanças:
 
-- div do topo deve exibir o conteudo lado a lado
-- tamanho do nome do site deve aumentar para 2rem
-- logotipo deve aumentar para 50px
-*/
+- Div do topo deve exibir o conteúdo lado a lado
+- Tamanho do nome do site deve aumentar para 2rem
+- Logotipo deve aumentar para 50px */
 
 @media screen and (min-width: 700px) {
   .topo div {
