@@ -88,3 +88,7 @@ json-server --watch db.json --port numeroDaPorta (usando 2112 neste projeto) (pa
 caso quiser simplificar o codigo, na seção de "scripts" em package.json você pode colocar seus proprios scripts para serem executados
 
 `npm run NomeDoScript`
+
+### Utilização de um arquivo.json para simular a base de dados da API
+
+é necessario criar um **arquivo.json** em qualquer pasta de sua maquina (em nosso caso, usamos a pasta raiz do petshop). este arquivo deve ser composto por um grande objeto contendo arrays com outros objetos.
