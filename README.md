@@ -72,3 +72,9 @@ Telas de até o tamanho X (max-width)
 Em vez de usar uma `div` em cada página agrupando conteúdos diferentes, isolamos ela num componente genérico (**Caixa**), aplicamos o CSS uma única vez usando módulo do componente, e programos através de `props` o carregamento dinâmico do conteúdo (**children**) e de classes adicionais (**listaDeClasses**).
 
 **Dica:** você pode usar **destructuring** de objetos nas `props`!
+
+### fazendo instalação do json-server
+
+obs: precisa abrir um terminal novo (janela) ao inves de abrir o terminal no VScode
+
+npm install -g json-server
