@@ -1,31 +1,39 @@
+import { useState, useEffect } from "react"; // hooks do react
 import estilos from "./ListaPosts.module.css";
+import servidorApi from "../../api/servidor-api";
+
 const ListaPosts = () => {
-  const posts = [
-    {
-      id: 1,
-      titulo: "Banho no catiorrinho",
-      subtitulo: "Use as utensilios certos para banhar seu cão",
-      descricao:
-        "Banhos regulares mantém os pelos e pele de seu cachorro limpa, renovada e saudável. O processo de ensaboar e escovar remove resíduos de pelos e peles que já estão mortas, providenciando um maior respiro da pele de seu cachorro",
-      categoria: "bem-estar",
-    },
-    {
-      id: 2,
-      titulo: "Seu catiorrinho merece um tapete refrescante",
-      subtitulo: "O frescor que seu pet merece",
-      descricao:
-        "O produto é um colchonete de nylon, recheado com espuma e gel (não tóxico), que promete refrescar os bichos. O gel interno é ativado com o peso e a pressão do animal, ou seja, começa a funcionar quando o pet está sobre ele. O tapete promete baixar a temperatura entre 6ºC e 10°C em relação à registrada no ambiente.",
-      categoria: "bem-estar",
-    },
-    {
-      id: 3,
-      titulo: "Cuidado com as pulgas!",
-      subtitulo: "Evite que seus animais sejam afetados por esses parasitas",
-      descricao:
-        "Para prevenir que o seu pet seja infestado, coleiras e sprays anti-pulgas e carrapatos são boas opções. Procure uma clínica veterinária para saber qual é a melhor escolha para o seu animal, de acordo com o porte, tipo de pelo e idade. Os sprays precisam ser reforçados a cada 30 dias para que o efeito seja mantido.",
-      categoria: "bem-estar",
-    },
-  ];
+  /* iniciamos o state do componente com um array vazio para posteriormente "preenche-lo" com os dados vindos da API
+  esta atribuição sera feita com auxilio do setPosts */
+
+  const [posts, setPosts] = useState([]);
+
+  const postsTemp = [];
+
+  useEffect(() => {
+    async function getPosts() {
+      try {
+        const resposta = await fetch(`${servidorApi}/posts`);
+        const dados = await resposta.json();
+        setPosts(dados);
+      } catch (error) {
+        console.log("deu ruim!" + error.message);
+      }
+    }
+    getPosts();
+  }, []);
+
+  /* sobre o useEffect
+  este hook visa permitir um maior controle sobre "efeitos colaterais" na execução do componente.
+  
+  recebe dois parametros:
+  1º: função callback com o que sera executado
+  2º: lista de dependencias que indicarão ao useEffect quando ele deverá funcionar
+
+  - se não passar a lista (ou seja, se deixar sem o []), useEffect executará toda vez que o componente for renderizado. portanto, o callback se torna um loop infinito.
+
+  - se passar a lista vazia (ou seja, deixar o [] vazio), useEffect executará somente no momento em que o componente é renderizado a primeira vez evitando o loop infinito do callback.
+  */
 
   return (
     <div className={estilos.lista_posts}>

@@ -67,12 +67,5 @@
       "categoria": "bem-estar"
     }
   ],
-  "contatos": [
-    {
-      "nome": "Tiago B. dos Santos",
-      "email": "geddy@rush.com",
-      "mensagem": "dsadsa",
-      "id": 1
-    }
-  ]
+  "contatos": []
 }

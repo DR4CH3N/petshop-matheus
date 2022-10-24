@@ -73,8 +73,18 @@ Em vez de usar uma `div` em cada página agrupando conteúdos diferentes, isolam
 
 **Dica:** você pode usar **destructuring** de objetos nas `props`!
 
-### fazendo instalação do json-server
+## fazendo instalação global e execução do json-server
 
-obs: precisa abrir um terminal novo (janela) ao inves de abrir o terminal no VScode
+obs: precisa abrir um terminal novo (janela) ao inves de abrir o terminal no VScode, no caso o terminal do nodeJS
 
 npm install -g json-server
+
+### execução
+
+json-server --watch db.json
+
+json-server --watch db.json --port numeroDaPorta (usando 2112 neste projeto) (para poder mudar a porta usada)
+
+caso quiser simplificar o codigo, na seção de "scripts" em package.json você pode colocar seus proprios scripts para serem executados
+
+`npm run NomeDoScript`
