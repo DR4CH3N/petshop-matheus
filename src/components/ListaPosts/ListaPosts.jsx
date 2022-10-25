@@ -1,39 +1,36 @@
-import { useState, useEffect } from "react"; // hooks do react
+import { useState, useEffect } from "react"; // Hooks do React
+
+import serverApi from "../../api/servidor-api";
 import estilos from "./ListaPosts.module.css";
-import servidorApi from "../../api/servidor-api";
-
 const ListaPosts = () => {
-  /* iniciamos o state do componente com um array vazio para posteriormente "preenche-lo" com os dados vindos da API
-  esta atribuição sera feita com auxilio do setPosts */
-
+  /* Iniciamos o state do componente com um array vazio,
+  para posteriormente "preenchê-lo" com os dados vindos da API.
+  Esta atribuição será feita com auxílio do setPosts. */
   const [posts, setPosts] = useState([]);
-
-  const postsTemp = [];
 
   useEffect(() => {
     async function getPosts() {
       try {
-        const resposta = await fetch(`${servidorApi}/posts`);
+        const resposta = await fetch(`${serverApi}/posts`);
         const dados = await resposta.json();
         setPosts(dados);
       } catch (error) {
-        console.log("deu ruim!" + error.message);
+        console.log("Deu ruim! " + error.message);
       }
     }
     getPosts();
   }, []);
 
-  /* sobre o useEffect
-  este hook visa permitir um maior controle sobre "efeitos colaterais" na execução do componente.
+  /* Sobre o useEffect
+  Este hook visa permitir um maior controle sobre "efeitos colaterais" na execução do componente.
   
-  recebe dois parametros:
-  1º: função callback com o que sera executado
-  2º: lista de dependencias que indicarão ao useEffect quando ele deverá funcionar
+  Recebe dois parâmetros:
+  1º: função callback com o que será executado
+  2º: lista de dependências que indicarão ao useEffect quando ele deverá funcionar
 
-  - se não passar a lista (ou seja, se deixar sem o []), useEffect executará toda vez que o componente for renderizado. portanto, o callback se torna um loop infinito.
+  -Se não passar a lista (ou seja, se deixar sem []), useEffect executará toda vez que o componente for renderizado. Portanto, o callback se torna um loop infinito.
 
-  - se passar a lista vazia (ou seja, deixar o [] vazio), useEffect executará somente no momento em que o componente é renderizado a primeira vez evitando o loop infinito do callback.
-  */
+  -Se passar a lista vazia (ou seja, deixar o [] vazio), useEffect executará somente no momento que o componente é renderizado pela primeira vez, evitando o loop infinito do callback.  */
 
   return (
     <div className={estilos.lista_posts}>
