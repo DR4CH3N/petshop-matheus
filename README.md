@@ -73,22 +73,60 @@ Em vez de usar uma `div` em cada página agrupando conteúdos diferentes, isolam
 
 **Dica:** você pode usar **destructuring** de objetos nas `props`!
 
-## fazendo instalação global e execução do json-server
+---
 
-obs: precisa abrir um terminal novo (janela) ao inves de abrir o terminal no VScode, no caso o terminal do nodeJS
+## Usando uma api fake para simular processos de consumo de dados dinâmicos
 
-npm install -g json-server
+### Instalação global do pacote JSON-SERVER (basta instalar 1x)
 
-### execução
+`npm install -g json-server`
 
-json-server --watch db.json
-
-json-server --watch db.json --port numeroDaPorta (usando 2112 neste projeto) (para poder mudar a porta usada)
-
-caso quiser simplificar o codigo, na seção de "scripts" em package.json você pode colocar seus proprios scripts para serem executados
-
-`npm run NomeDoScript`
+Obs.: se tiver problemas ao executar, utilize o **Node.js command prompt**
 
 ### Utilização de um arquivo.json para simular a base de dados da API
 
-é necessario criar um **arquivo.json** em qualquer pasta de sua maquina (em nosso caso, usamos a pasta raiz do petshop). este arquivo deve ser composto por um grande objeto contendo arrays com outros objetos.
+É necessário criar um **arquivo.json** em qualquer pasta em sua máquina (no nosso caso, usamos a própria pasta raíz do petshop.). Este arquivo deve ser composto por um grande objeto contendo arrays com outros objetos.
+
+### Execução do servidor da API
+
+1. Usando de preferência o **Node.js command prompt**, acesse a pasta onde está o **nome-do-arquivo.json**
+2. Execute o comando `json-server --watch nome-do-arquivo.json --port 2112`
+
+Obs.: o número da porta deve ser diferente de 3000 (que é padrão no json-server) pois esta porta já estará sendo usada pelo app **React**.
+
+Dica: no **package.json** do seu app adicione em `scripts` uma nova propriedade chamada `api` valendo `json-server --watch nome-do-arquivo.json --port 2112`. Desta forma, você poderá executar o server da API digitando simplesmente `npm run api`.
+
+Após a execução da API, cada array de objetos contido no **arquivo.json** se torna um `endpoint` da API, acessível através da URL _localhost:porta/nome-do-endpoint_.
+
+Exemplos:
+
+`http://localhost:2112/categorias`
+
+`http://localhost:2112/posts`
+
+`http://localhost:2112/contatos`
+
+--
+
+## React Hooks
+
+Introduzidos na versão React 16.8, são funções que permitem manipular estados e outros recursos do React sem a necessidade de programar Classes. **Hooks** são funções que se conectam aos estados do React e aos recursos do ciclo de vida dos componentes da função. _Não funcionam dentro de classes_.
+
+Mais informações: <https://www.javatpoint.com/react-hooks>
+
+### useState
+
+Função que retorna uma variável com o valor do estado (state) e uma função que permite atualizar o valor desta variável. Podemos ter vários useState em nossos componentes para gerenciar estados e dados diferentes.
+
+### useEffect
+
+Este hook visa permitir um maior controle sobre "efeitos colaterais" na execução do componente.
+
+Recebe dois parâmetros:
+
+- 1º: função callback com o que será executado
+- 2º: lista (array) de dependências que indicarão ao `useEffect` quando ele deverá funcionar
+
+Se não passar a lista (ou seja, se deixar sem []), `useEffect` executará toda vez que o componente for renderizado. Portanto, o callback se torna um loop infinito.
+
+Se passar a lista vazia (ou seja, deixar o [] vazio), `useEffect` executará somente no momento que o componente é renderizado pela primeira vez, evitando o loop infinito do callback.
