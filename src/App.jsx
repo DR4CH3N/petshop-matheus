@@ -1,9 +1,10 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 import Cabecalho from "./components/Cabecalho/Cabecalho";
 import Contato from "./pages/Contato/Contato";
 import Home from "./pages/Home/Home";
 import Pagina404 from "./pages/Pagina404/Pagina404";
+import Post from "./pages/Post/Post";
 import Produtos from "./pages/Produtos/Produtos";
 import Sobre from "./pages/Sobre/Sobre";
 
@@ -17,6 +18,16 @@ const App = () => {
             <Route exact path="/">
               <Home />
             </Route>
+
+            {/* Rota de redirecionamento (se o usuario cair em /posts), ele sera redirecionado a rota raiz (onde esta o Home) */}
+            <Route exact path="/posts">
+              <Redirect to="/" />
+            </Route>
+
+            <Route path="/posts/:id">
+              <Post />
+            </Route>
+
             <Route path="/produtos">
               <Produtos />
             </Route>
