@@ -24,7 +24,17 @@
   color: #2321bd;
 }
 
+/* quando um link contido em .post receber o foco do teclado, tambem acionara a transformação */
 .post:has(> a:focus),
 .post:hover {
+  cursor: pointer;
   transform: scale(1.05);
+}
+
+/* para poder padronizar o outline (bordinha que surge ao navegar via teclado) */
+
+a:hover,
+a:focus {
+  outline-color: red;
+  outline-style: solid;
 }
