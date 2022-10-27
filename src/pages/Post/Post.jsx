@@ -8,7 +8,7 @@ import LoadingDesenho from "../../components/LoadingDesenho/LoadingDesenho";
 
 const Post = () => {
   /* useParams() -> hook do react-router que permite acesso/manipulação de parametros vindos da URL */
-  const { id } = useParams();
+  const { id, nome } = useParams();
 
   const [post, setPost] = useState([]);
   const [loading, setloading] = useState(true);

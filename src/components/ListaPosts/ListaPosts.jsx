@@ -15,7 +15,16 @@ const ListaPosts = (props) => {
     async function getPosts() {
       try {
         // const resposta = await fetch(`${serverApi}/posts`);
-        const resposta = await fetch(`${serverApi}/${props.url || "posts"}`);
+
+        // solução gulherme com if/else simples
+        // const resposta = await fetch(`${serverApi}/${props.url || "posts"}`);
+
+        // solução adriel com operador ternario
+        // caso props.url existir, ele vai trazer a pagina de posts
+        const resposta = await fetch(
+          `${serverApi}/${props.url !== undefined ? props.url : "posts"}`
+        );
+
         const dados = await resposta.json();
         setPosts(dados);
         setloading(false);
@@ -31,7 +40,7 @@ const ListaPosts = (props) => {
   */
 
   if (loading) {
-    return <LoadingDesenho />;
+    return <LoadingDesenho texto="posts" />;
   }
   /* Sobre o useEffect
   Este hook visa permitir um maior controle sobre "efeitos colaterais" na execução do componente.

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import serverApi from "../../api/servidor-api";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LoadingDesenho from "../LoadingDesenho/LoadingDesenho";
 import estilos from "./ListaCategorias.module.css";
 
@@ -27,7 +27,7 @@ const ListaCategorias = () => {
   }, []);
 
   if (loading) {
-    return <LoadingDesenho />;
+    return <LoadingDesenho texto="categorias" />;
   }
 
   return (
@@ -42,7 +42,12 @@ const ListaCategorias = () => {
         {categorias.map(({ id, nome }) => {
           return (
             <li key={id}>
-              <Link to={`/categoria/${nome}`}>{nome} </Link>
+              <NavLink
+                activeClassName={estilos.ativo}
+                to={`/categoria/${nome}`}
+              >
+                {nome}{" "}
+              </NavLink>
             </li>
           );
         })}
