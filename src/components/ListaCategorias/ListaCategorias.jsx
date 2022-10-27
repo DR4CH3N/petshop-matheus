@@ -35,7 +35,7 @@ const ListaCategorias = () => {
     // retornar uma ul li no ListaCategorias
     <div className={estilos.lista_categorias}>
       <ul>
-        {/* aqui fazemos um loop foreach para acessar cada categoria */}
+        {/* aqui fazemos um loop foreach para acessar cada categoria, a versão abaixo comentada é a versão sem destructuring. a 2 versão é a versão com destructuring */}
         {/* {categorias.map(({ categoria }) => {
           return <li key={categoria.id}> {categoria.nome}</li>;
         })} */}
@@ -43,7 +43,7 @@ const ListaCategorias = () => {
         {categorias.map(({ id, nome }) => {
           return (
             <li key={id}>
-              <Link to="">{nome} </Link>
+              <Link to={`/categoria/${nome}`}>{nome} </Link>
             </li>
           );
         })}
