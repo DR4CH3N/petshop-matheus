@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"; // Hooks do React
-
 import serverApi from "../../api/servidor-api";
+
 import ArtigoPost from "../ArtigoPost/ArtigoPost";
 import LoadingDesenho from "../LoadingDesenho/LoadingDesenho";
 import estilos from "./ListaPosts.module.css";
-const ListaPosts = () => {
+const ListaPosts = (props) => {
   /* Iniciamos o state do componente com um array vazio,
   para posteriormente "preenchê-lo" com os dados vindos da API.
   Esta atribuição será feita com auxílio do setPosts. */
@@ -14,7 +14,8 @@ const ListaPosts = () => {
   useEffect(() => {
     async function getPosts() {
       try {
-        const resposta = await fetch(`${serverApi}/posts`);
+        // const resposta = await fetch(`${serverApi}/posts`);
+        const resposta = await fetch(`${serverApi}/${props.url || "posts"}`);
         const dados = await resposta.json();
         setPosts(dados);
         setloading(false);
@@ -23,7 +24,11 @@ const ListaPosts = () => {
       }
     }
     getPosts();
-  }, []);
+  }, [props.url]);
+  /* é necessario indicar a url como dependencia pois ela muda toda vez que uma categoria é clicada.
+  
+  desta forma, o useEffect "entende" que ele deve executar novamente as suas ações (neste caso, executar novamente o fetch na API)
+  */
 
   if (loading) {
     return <LoadingDesenho />;
@@ -40,6 +45,7 @@ const ListaPosts = () => {
   -Se passar a lista vazia (ou seja, deixar o [] vazio), useEffect executará somente no momento que o componente é renderizado pela primeira vez, evitando o loop infinito do callback.  */
 
   return (
+    // retornar uma ul li no ListaCategorias
     <div className={estilos.lista_posts}>
       {posts.map(({ id, titulo, subtitulo }) => (
         <ArtigoPost

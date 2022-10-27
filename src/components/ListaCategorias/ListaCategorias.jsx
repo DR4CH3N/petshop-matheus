@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import serverApi from "../../api/servidor-api";
 
 import { Link } from "react-router-dom";
-import ArtigoPost from "../ArtigoPost/ArtigoPost";
 import LoadingDesenho from "../LoadingDesenho/LoadingDesenho";
 import estilos from "./ListaCategorias.module.css";
 
