@@ -1,7 +1,19 @@
 import { Button, TextField } from "@mui/material";
+import { useState } from "react";
 import Caixa from "../../components/Caixa/Caixa";
 import estilos from "./Contato.module.css";
 const Contato = () => {
+  // Eventos e funções para captura da digitação dos campos
+
+  const inputNome = (event) => setNome(event.target.value);
+  const inputEmail = (event) => setEmail(event.target.value);
+  const inputMensagem = (event) => setMensagem(event.target.value);
+
+  // hook useState para manipular os estados dos dados do componente
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [mensagem, setMensagem] = useState("");
+
   return (
     <section>
       <h2 className={estilos.titulo_secao}>Fale Conosco</h2>
@@ -10,6 +22,9 @@ const Contato = () => {
         <form className={estilos.formulario} action="" method="post">
           <div>
             <TextField
+              onChange={inputNome}
+              // enquanto estiver rolando a digitação, ele vai executar a função inputNome
+              // OBS: entre chaves, NÃO colocar entre parenteses ou a função ja vai começar a ser executada desde o inicio e não ao longo do caminho
               type="text"
               label="Nome"
               variant="outlined"
@@ -21,6 +36,7 @@ const Contato = () => {
 
           <div>
             <TextField
+              onChange={inputEmail}
               type="email"
               label="E-mail"
               variant="outlined"
@@ -31,6 +47,7 @@ const Contato = () => {
           </div>
           <div>
             <TextField
+              onChange={inputMensagem}
               type="text"
               label="Mensagem"
               variant="outlined"
