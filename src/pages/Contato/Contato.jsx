@@ -2,24 +2,53 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import Caixa from "../../components/Caixa/Caixa";
 import estilos from "./Contato.module.css";
-const Contato = () => {
-  // Eventos e funções para captura da digitação dos campos
+import serverApi from "../../api/servidor-api";
 
+const Contato = () => {
+  /* Eventos/Funções para captura da digitação nos campos */
   const inputNome = (event) => setNome(event.target.value);
   const inputEmail = (event) => setEmail(event.target.value);
   const inputMensagem = (event) => setMensagem(event.target.value);
 
-  // hook useState para manipular os estados dos dados do componente
+  /* Hook useState para manipular os estados dos dados do componente */
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [mensagem, setMensagem] = useState("");
+
+  const enviarContato = async (event) => {
+    event.preventDefault();
+
+    const opcoes = {
+      method: "POST",
+      body: JSON.stringify({ nome, email, mensagem }),
+      headers: { "content-type": "application/json; charset=UTF-8" },
+    };
+
+    /* Script para envio dos dados para a API */
+    try {
+      await fetch(`${serverApi}/contatos`, opcoes);
+      alert("dados enviados!");
+    } catch (error) {
+      console.log("deu ruim: " + error.message);
+    }
+  };
+
+  //  "Toggle" do botão: caso qualquer uma das variaveis seja undefined, desabilitado se manterá true e com isso o botão sera desabilitado.
+
+  // quando todas deixarem de ser undefined, desabilitado se tornará false e com isso o botão será habilitado.
+  let desabilitado = !nome || !email || !mensagem;
+  // let desabilitado = nome === "" || email === "" | mensagem === ""
 
   return (
     <section>
       <h2 className={estilos.titulo_secao}>Fale Conosco</h2>
 
       <Caixa>
-        <form className={estilos.formulario} action="" method="post">
+        <form
+          onSubmit={enviarContato}
+          className={estilos.formulario}
+          method="post"
+        >
           <div>
             <TextField
               onChange={inputNome}
@@ -30,7 +59,7 @@ const Contato = () => {
               variant="outlined"
               fullWidth
               required
-              helperText="Você deve digitar seu nome"
+              helperText="Você deve digitar o nome"
             />
           </div>
 
@@ -42,9 +71,10 @@ const Contato = () => {
               variant="outlined"
               fullWidth
               required
-              helperText="Informe um e-mail para o contato"
+              helperText="Informe um e-mail para contato"
             />
           </div>
+
           <div>
             <TextField
               onChange={inputMensagem}
@@ -59,11 +89,11 @@ const Contato = () => {
             />
           </div>
           <div>
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" disabled={desabilitado}>
               Enviar mensagem
             </Button>
+            {/* tudo que estiver na biblioteca requere importação, como o componente Button e TextField */}
           </div>
-          {/* tudo que estiver na biblioteca requere importação, como o componente Button e TextField */}
         </form>
       </Caixa>
     </section>

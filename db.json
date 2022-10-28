@@ -71,5 +71,12 @@
       "categoria": "bem-estar"
     }
   ],
-  "contatos": []
+  "contatos": [
+    {
+      "nome": "Jõaozinho ",
+      "email": "jaum@gmail.com",
+      "mensagem": "sla qq coisa teste",
+      "id": 1
+    }
+  ]
 }
