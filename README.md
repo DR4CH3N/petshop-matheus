@@ -136,3 +136,9 @@ Se passar a lista vazia (ou seja, deixar o [] vazio), `useEffect` executará som
 ### props
 
 props são basicamente variaveis, porem no react essas variaveis se chamam "props" em vez de var
+
+## instalação da biblioteca de componentes do react MUI
+
+npm install @mui/material @emotion/react @emotion/styled
+
+Dicas de CSS: https://code.tutsplus.com/pt/tutorials/the-30-css-selectors-you-must-memorize--net-16048

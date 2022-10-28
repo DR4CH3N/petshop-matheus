@@ -7,7 +7,7 @@ const Contato = () => {
       <h2 className={estilos.titulo_secao}>Fale Conosco</h2>
 
       <Caixa>
-        <form action="" method="post">
+        <form className={estilos.formulario} action="" method="post">
           <div>
             <TextField
               type="text"
@@ -46,6 +46,7 @@ const Contato = () => {
               Enviar mensagem
             </Button>
           </div>
+          {/* tudo que estiver na biblioteca requere importação, como o componente Button e TextField */}
         </form>
       </Caixa>
     </section>
