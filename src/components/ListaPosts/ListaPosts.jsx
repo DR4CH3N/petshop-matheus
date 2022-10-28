@@ -12,6 +12,7 @@ const ListaPosts = (props) => {
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
+    setloading(true);
     async function getPosts() {
       try {
         // const resposta = await fetch(`${serverApi}/posts`);
@@ -41,6 +42,9 @@ const ListaPosts = (props) => {
 
   if (loading) {
     return <LoadingDesenho texto="posts" />;
+  }
+  if (posts.length === 0) {
+    return <h2 style={{ textAlign: "center" }}> não há posts!</h2>;
   }
   /* Sobre o useEffect
   Este hook visa permitir um maior controle sobre "efeitos colaterais" na execução do componente.
