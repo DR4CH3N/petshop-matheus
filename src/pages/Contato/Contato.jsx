@@ -1,8 +1,9 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import serverApi from "../../api/servidor-api";
+
 import Caixa from "../../components/Caixa/Caixa";
 import estilos from "./Contato.module.css";
-import serverApi from "../../api/servidor-api";
 
 const Contato = () => {
   /* Eventos/Funções para captura da digitação nos campos */
@@ -21,23 +22,28 @@ const Contato = () => {
     const opcoes = {
       method: "POST",
       body: JSON.stringify({ nome, email, mensagem }),
-      headers: { "content-type": "application/json; charset=UTF-8" },
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
     };
 
     /* Script para envio dos dados para a API */
     try {
       await fetch(`${serverApi}/contatos`, opcoes);
-      alert("dados enviados!");
+      alert("Dados enviados!");
     } catch (error) {
-      console.log("deu ruim: " + error.message);
+      console.log("Deu ruim: " + error.message);
     }
   };
 
-  //  "Toggle" do botão: caso qualquer uma das variaveis seja undefined, desabilitado se manterá true e com isso o botão sera desabilitado.
+  // let desabilitado = nome === "" || email === "" || mensagem === "";
 
-  // quando todas deixarem de ser undefined, desabilitado se tornará false e com isso o botão será habilitado.
+  /* "Toggle" do botão: caso qualquer uma das variáveis seja undefined,
+  desabilitado se manterá true e com isso o botão ficará desabilitado.
+  
+  Quando todas deixarem de ser undefined, desabilitado se tornará false e
+  com isso o botão será habilitado. */
   let desabilitado = !nome || !email || !mensagem;
-  // let desabilitado = nome === "" || email === "" | mensagem === ""
 
   return (
     <section>
@@ -52,14 +58,12 @@ const Contato = () => {
           <div>
             <TextField
               onChange={inputNome}
-              // enquanto estiver rolando a digitação, ele vai executar a função inputNome
-              // OBS: entre chaves, NÃO colocar entre parenteses ou a função ja vai começar a ser executada desde o inicio e não ao longo do caminho
               type="text"
               label="Nome"
               variant="outlined"
               fullWidth
               required
-              helperText="Você deve digitar o nome"
+              helperText={!nome ? "Você deve digitar o nome" : ""}
             />
           </div>
 
@@ -71,7 +75,7 @@ const Contato = () => {
               variant="outlined"
               fullWidth
               required
-              helperText="Informe um e-mail para contato"
+              helperText={!email ? "Informe um e-mail para contato" : ""}
             />
           </div>
 
@@ -83,7 +87,7 @@ const Contato = () => {
               variant="outlined"
               fullWidth
               required
-              helperText="Fale o que você quiser"
+              helperText={!mensagem ? "Fale o que você quiser" : ""}
               multiline
               rows={6}
             />
@@ -92,7 +96,6 @@ const Contato = () => {
             <Button type="submit" variant="contained" disabled={desabilitado}>
               Enviar mensagem
             </Button>
-            {/* tudo que estiver na biblioteca requere importação, como o componente Button e TextField */}
           </div>
         </form>
       </Caixa>
