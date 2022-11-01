@@ -142,3 +142,12 @@ props são basicamente variaveis, porem no react essas variaveis se chamam "prop
 npm install @mui/material @emotion/react @emotion/styled
 
 Dicas de CSS: https://code.tutsplus.com/pt/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+
+## para poder usar a API via rede local
+
+### package.json
+
+altere a linha: `"json-server --watch db.json --port 2112"`
+para: `"json-server --host numero.IP.Da.Sua.Maquina db.json --port 2112"`
+
+exemplo: `"json-server --host 10.20.45.27 db.json --port 2112"`
