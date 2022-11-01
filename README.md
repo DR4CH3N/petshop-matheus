@@ -151,3 +151,15 @@ altere a linha: `"json-server --watch db.json --port 2112"`
 para: `"json-server --host numero.IP.Da.Sua.Maquina db.json --port 2112"`
 
 exemplo: `"json-server --host 10.20.45.27 db.json --port 2112"`
+
+## tornando o app react em uma aplicação instalavel no dispositivo movel (PWA)
+
+### configurar arquivo manifest.json
+
+ele é um **arquivo de manifesto** JSON contendo informações sobre seu aplicativo web e, quando combinado com um **service worker**, permite a instalação do aplicativo em qualquer dispositivo compativel.
+
+## configurar/programar um service worker JavaScript
+
+um **service worker** (trabalhador/manipulador de serviços) é um script que o navegador executa em segundo plano separado da aplicação web, possibilitando recursos que não precisam de uma pagina ou interações com o usuario.
+
+o service worker esta no centro de muitos recursos das chamadas **PWAs (progressive web applications)**, tais como: cache offline, sincronização em segundo plano, notificações, execução independente do navegador mobile etc
