@@ -1,24 +1,30 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import serverApi from "../../api/servidor-api";
-
-import { Link, NavLink } from "react-router-dom";
 import LoadingDesenho from "../LoadingDesenho/LoadingDesenho";
 import estilos from "./ListaCategorias.module.css";
 
 const ListaCategorias = () => {
-  /* Iniciamos o state do componente com um array vazio,
-    para posteriormente "preenchê-lo" com os dados vindos da API.
-    Esta atribuição será feita com auxílio do setPosts. */
   const [categorias, setCategorias] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getCategorias() {
       try {
-        const resposta = await fetch(`${serverApi}/categorias`);
+        const resposta = await fetch(`${serverApi}/categorias.json`);
         const dados = await resposta.json();
-        setCategorias(dados);
-        setloading(false);
+        const listaDeCategorias = [];
+
+        for (const categoria in dados) {
+          const objetoCategoria = {
+            id: categoria,
+            nome: dados[categoria].nome,
+          };
+          listaDeCategorias.push(objetoCategoria);
+        }
+
+        setLoading(false);
+        setCategorias(listaDeCategorias);
       } catch (error) {
         console.log("Deu ruim! " + error.message);
       }
@@ -26,19 +32,11 @@ const ListaCategorias = () => {
     getCategorias();
   }, []);
 
-  if (loading) {
-    return <LoadingDesenho texto="categorias" />;
-  }
+  if (loading) return <LoadingDesenho texto="categorias..." />;
 
   return (
-    // retornar uma ul li no ListaCategorias
     <div className={estilos.lista_categorias}>
       <ul>
-        {/* aqui fazemos um loop foreach para acessar cada categoria, a versão abaixo comentada é a versão sem destructuring. a 2 versão é a versão com destructuring */}
-        {/* {categorias.map(({ categoria }) => {
-          return <li key={categoria.id}> {categoria.nome}</li>;
-        })} */}
-
         {categorias.map(({ id, nome }) => {
           return (
             <li key={id}>
@@ -46,7 +44,7 @@ const ListaCategorias = () => {
                 activeClassName={estilos.ativo}
                 to={`/categoria/${nome}`}
               >
-                {nome}{" "}
+                {nome}
               </NavLink>
             </li>
           );

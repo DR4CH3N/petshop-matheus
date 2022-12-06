@@ -1,5 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import serverApi from "../../api/servidor-api";
 
 import Caixa from "../../components/Caixa/Caixa";
@@ -16,6 +17,10 @@ const Contato = () => {
   const [email, setEmail] = useState("");
   const [mensagem, setMensagem] = useState("");
 
+  /* Hook necessário para criar uma navegação/redirecionamento
+  manualmente (ou seja, sem depender dos routes) */
+  let history = useHistory();
+
   const enviarContato = async (event) => {
     event.preventDefault();
 
@@ -31,6 +36,7 @@ const Contato = () => {
     try {
       await fetch(`${serverApi}/contatos`, opcoes);
       alert("Dados enviados!");
+      history.push("/"); // Redirecionar para a "home/blog"
     } catch (error) {
       console.log("Deu ruim: " + error.message);
     }

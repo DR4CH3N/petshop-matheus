@@ -1,4 +1,2 @@
-const porta = "2112";
-// const serverApi = `http://localhost:${porta}`; VERSÃO LOCALHOST
-const serverApi = `http://10.20.45.27:${porta}`; // VERSÃO REDE LOCAL VIA IP
+const serverApi = `https://petshop-c5e36-default-rtdb.firebaseio.com/`;
 export default serverApi;

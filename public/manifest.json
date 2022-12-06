@@ -1,7 +1,7 @@
 {
   "short_name": "PetShop",
-  "name": "PetShop incrivel demais da conta",
-  "description": "Exemplo de app react instalavel em dispositivos",
+  "name": "PetShop Incrível Demais da Conta",
+  "description": "Exemplo de App React instalável em dispositivos",
   "icons": [
     {
       "src": "favicon.png",

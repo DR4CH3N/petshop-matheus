@@ -1,64 +1,72 @@
 import { useState, useEffect } from "react"; // Hooks do React
-import serverApi from "../../api/servidor-api";
 
+import serverApi from "../../api/servidor-api";
 import ArtigoPost from "../ArtigoPost/ArtigoPost";
 import LoadingDesenho from "../LoadingDesenho/LoadingDesenho";
 import estilos from "./ListaPosts.module.css";
-const ListaPosts = (props) => {
-  /* Iniciamos o state do componente com um array vazio,
-  para posteriormente "preenchê-lo" com os dados vindos da API.
-  Esta atribuição será feita com auxílio do setPosts. */
+const ListaPosts = ({ categoria }) => {
   const [posts, setPosts] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setloading(true);
+    setLoading(true);
     async function getPosts() {
       try {
-        // const resposta = await fetch(`${serverApi}/posts`);
+        const resposta = await fetch(`${serverApi}/posts.json`);
+        const dados = await resposta.json(); // OBJETÃO DE DADOS
 
-        // solução gulherme com if/else simples
-        // const resposta = await fetch(`${serverApi}/${props.url || "posts"}`);
+        let listaDePosts = [];
 
-        // solução adriel com operador ternario
-        // caso props.url existir, ele vai trazer a pagina de posts
-        const resposta = await fetch(
-          `${serverApi}/${props.url !== undefined ? props.url : "posts"}`
-        );
+        for (const post in dados) {
+          const objetoPost = {
+            id: post,
+            titulo: dados[post].titulo, // banho no catiorrinho...
+            subtitulo: dados[post].subtitulo, // banho é bom
+            descricao: dados[post].descricao, // bla blah
+            categoria: dados[post].categoria, // comportamento
+          };
 
-        const dados = await resposta.json();
-        setPosts(dados);
-        setloading(false);
+          listaDePosts.push(objetoPost);
+
+          /* Se categoria for escolhida/clicada */
+          if (categoria) {
+            /* Então vamos fazer uma lista de posts com filtro
+            de categoria */
+
+            /* A cada vez que o loop for é executado,
+            pegamos a categoria de cada post e comparamos com a
+            categoria escolhida pelo usuário. */
+            listaDePosts = listaDePosts.filter(
+              /* Se esta comparação for verdadeira, guardamos
+              o post na listaDePosts. Caso contrário, é descartado pelo filtro */
+              (cadaPost) => cadaPost.categoria === categoria
+            );
+          }
+        }
+
+        setPosts(listaDePosts);
+        setLoading(false);
       } catch (error) {
         console.log("Deu ruim! " + error.message);
       }
     }
     getPosts();
-  }, [props.url]);
-  /* é necessario indicar a url como dependencia pois ela muda toda vez que uma categoria é clicada.
-  
-  desta forma, o useEffect "entende" que ele deve executar novamente as suas ações (neste caso, executar novamente o fetch na API)
-  */
+    /* É necessário indicar a url como dependência pois
+    ela muda toda vez em que uma categoria é clicada.
+    
+    Desta forma, o useEffect "entende" que ele deve executar novamente
+    as suas ações (neste caso, executar novamente o fetch na API) */
+  }, [categoria]);
 
   if (loading) {
-    return <LoadingDesenho texto="posts" />;
+    return <LoadingDesenho texto="posts..." />;
   }
+
   if (posts.length === 0) {
-    return <h2 style={{ textAlign: "center" }}> não há posts!</h2>;
+    return <h2 style={{ textAlign: "center" }}> Não há posts!</h2>;
   }
-  /* Sobre o useEffect
-  Este hook visa permitir um maior controle sobre "efeitos colaterais" na execução do componente.
-  
-  Recebe dois parâmetros:
-  1º: função callback com o que será executado
-  2º: lista de dependências que indicarão ao useEffect quando ele deverá funcionar
-
-  -Se não passar a lista (ou seja, se deixar sem []), useEffect executará toda vez que o componente for renderizado. Portanto, o callback se torna um loop infinito.
-
-  -Se passar a lista vazia (ou seja, deixar o [] vazio), useEffect executará somente no momento que o componente é renderizado pela primeira vez, evitando o loop infinito do callback.  */
 
   return (
-    // retornar uma ul li no ListaCategorias
     <div className={estilos.lista_posts}>
       {posts.map(({ id, titulo, subtitulo }) => (
         <ArtigoPost
@@ -74,8 +82,3 @@ const ListaPosts = (props) => {
 };
 
 export default ListaPosts;
-
-/* <article className={estilos.post} key={id}>
-          <h3> {titulo} </h3>
-          <p>{subtitulo}</p>
-        </article> */

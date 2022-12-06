@@ -20,7 +20,7 @@ const App = () => {
               <Home />
             </Route>
 
-            {/* Rota de redirecionamento (se o usuario cair em /posts), ele sera redirecionado a rota raiz (onde esta o Home) */}
+            {/* Rota de redirecionamento (se o usuário cair em /posts), ele será redirecionado à rota raíz (onde está o Home) */}
             <Route exact path="/posts">
               <Redirect to="/" />
             </Route>
@@ -29,16 +29,15 @@ const App = () => {
               <Post />
             </Route>
 
-            {/* estamos usando o :nome em vez de :id com o propositso de ter uma URL amigavel (slug) */}
-
+            {/* Estamos usando o :nome em vez de :id
+com o propósito de ter uma URL amigável (slug) */}
             <Route exact path="/categoria/:nome">
-              <Categoria> </Categoria>
+              <Categoria />
             </Route>
 
             <Route path="/produtos">
               <Produtos />
             </Route>
-
             <Route path="/sobre">
               <Sobre />
             </Route>
