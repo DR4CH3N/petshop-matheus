@@ -1,6 +1,6 @@
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import Cabecalho from "./components/Cabecalho/Cabecalho";
+import Cabecalho from "./components/cabecalho/Cabecalho";
 import Categoria from "./pages/Categoria/Categoria";
 import Contato from "./pages/Contato/Contato";
 import Home from "./pages/Home/Home";
